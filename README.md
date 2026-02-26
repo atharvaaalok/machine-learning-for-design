@@ -35,3 +35,33 @@ A curated list of resources on machine learning for fluid flow, structures and d
             - "Traditional CFD simulation suffers from long response time, predominantly because of
               the complexity of the underlying physics and the historical focus on accuracy."
     </details>
+
+
+- [Application of Convolutional Neural Network to Predict Airfoil Lift Coefficient](https://arxiv.org/abs/1712.10082) - 2017, Yao Zhang et al.
+    <details>
+    <summary>Main Takeaways</summary>
+
+        - Motivation:
+            - CNNs can prove to be better than MLPs at aerodynamic predictions by exploiting spatial
+              coorelations.
+            - Goal: Predict Cl.
+        - Data generation:
+            - XFoil as the solver at multiple AoA, Mach and Reynolds numbers.
+            - UIUC airfoil database as the dataset.
+            - AoA (-10, 30), Re (30,000 - 6,500,000), Mach (0.3, 0.8).
+            - 40,000 simulations, augmented by adding inverted shape and Cl for a total 80,000.
+        - Components:
+            1. MLP baseline. Inputs: Re, Mach, AoA + 100 y-coords at pre-defined x-coords.
+            2. AeroCNN-I. Inputs: 2x50 array of y-coords (upper and lower coords in each row).
+              Perform convolution on this. Combine with Re, Mach, AoA in later FC layer.
+            3. AeroCNN-II. Inputs: Artificial image (49x49) formed by the pixelated shape and
+              coloring the pixels based on whether they are inside/on/outside and also based on the
+              Mach number.
+        - Key Ideas:
+            - The "artificial image" synthesizes geometric (shape) and non-geometric boundaries
+              (AoA, Mach) into a unified 2D array for CNNs to operate on.
+        - Miscellaneous:
+            - "Traditional way of solving problems in fluid mechanics is top-down and requires an
+              understanding of the physics of the problem which is high-dimensional, multi-scale and
+              nonlinear."
+    </details>
