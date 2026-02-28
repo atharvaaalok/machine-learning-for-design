@@ -65,3 +65,29 @@ A curated list of resources on machine learning for fluid flow, structures and d
               understanding of the physics of the problem which is high-dimensional, multi-scale and
               nonlinear."
     </details>
+
+
+- [Inverse Design of Airfoil using a Deep Convolutional Neural Network](https://arc.aiaa.org/doi/10.2514/1.J057894) - 2019, Vinothkumar Sekar et al.
+    <details>
+    <summary>Main Takeaways</summary>
+
+        - Motivation:
+            - CNN for gradient free airfoil design.
+            - Goal: Given a Cp distribution, predict the airfoil shape.
+        - Data generation:
+            - XFoil as the solver at Re = 100,000, AoA = 3.
+            - 1343 training, 143 testing airfoils.
+        - Components:
+            - Conv -> Pool -> FC layer architectures.
+            - Input: Cp plots are converted to grayscale images. Passed either as two separate
+              images of upper and lower Cp distribution (144x144x2, 216x216x2) or a combined image
+              (144x144x1).
+            - Output: (from FC layer) 70 y-coords (35 upper, 35 lower) at predefined x-coords.
+        - Key Ideas:
+            - Gradient free design of airfoils through a direct prediction of shape from Cp
+              distribution.
+        - Potential Issue:
+            - They claim CNN helps reduce design time from hours (using solvers) to seconds but they
+              train using XFoil data which does not take hours for the optimization. It is not clear
+              what their approach has improved upon.
+    </details>
