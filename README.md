@@ -13,7 +13,7 @@ A curated list of resources on machine learning for fluid flow, structures and d
             - CFD is: 1) compute intensive, 2) memory demanding and 3) time-consuming.
             - Want real-time feedback for early stage design. CFD analysis is typically only for
               final stage design. In early design high fidelity not needed.
-        - Data generation:
+        - Data Generation:
             - LBM solver. Handles complex geometry and trivially parallelizable.
             - Non-uniform steady laminar flow in 2D and 3D.
             - Re = 20.
@@ -45,7 +45,7 @@ A curated list of resources on machine learning for fluid flow, structures and d
             - CNNs can prove to be better than MLPs at aerodynamic predictions by exploiting spatial
               coorelations.
             - Goal: Predict Cl.
-        - Data generation:
+        - Data Generation:
             - XFoil as the solver at multiple AoA, Mach and Reynolds numbers.
             - UIUC airfoil database as the dataset.
             - AoA (-10, 30), Re (30,000 - 6,500,000), Mach (0.3, 0.8).
@@ -74,7 +74,7 @@ A curated list of resources on machine learning for fluid flow, structures and d
         - Motivation:
             - CNN for gradient free airfoil design.
             - Goal: Given a Cp distribution, predict the airfoil shape.
-        - Data generation:
+        - Data Generation:
             - XFoil as the solver at Re = 100,000, AoA = 3.
             - 1343 training, 143 testing airfoils.
         - Components:
