@@ -64,6 +64,10 @@ A curated list of resources on machine learning for fluid flow, structures and d
             - "Traditional way of solving problems in fluid mechanics is top-down and requires an
               understanding of the physics of the problem which is high-dimensional, multi-scale and
               nonlinear."
+        - Potential Issue:
+            - They claim that CNN can predict Cl values fast compared to solvers but they train
+              using Xfoil data which is already fast. It is not clear what their approach has
+              improved upon.
     </details>
 
 
