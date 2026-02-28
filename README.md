@@ -46,7 +46,7 @@ A curated list of resources on machine learning for fluid flow, structures and d
               coorelations.
             - Goal: Predict Cl.
         - Data Generation:
-            - XFoil as the solver at multiple AoA, Mach and Reynolds numbers.
+            - Xfoil as the solver at multiple AoA, Mach and Reynolds numbers.
             - UIUC airfoil database as the dataset.
             - AoA (-10, 30), Re (30,000 - 6,500,000), Mach (0.3, 0.8).
             - 40,000 simulations, augmented by adding inverted shape and Cl for a total 80,000.
@@ -75,7 +75,7 @@ A curated list of resources on machine learning for fluid flow, structures and d
             - CNN for gradient free airfoil design.
             - Goal: Given a Cp distribution, predict the airfoil shape.
         - Data Generation:
-            - XFoil as the solver at Re = 100,000, AoA = 3.
+            - Xfoil as the solver at Re = 100,000, AoA = 3.
             - 1343 training, 143 testing airfoils.
         - Components:
             - Conv -> Pool -> FC layer architectures.
@@ -88,6 +88,6 @@ A curated list of resources on machine learning for fluid flow, structures and d
               distribution.
         - Potential Issue:
             - They claim CNN helps reduce design time from hours (using solvers) to seconds but they
-              train using XFoil data which does not take hours for the optimization. It is not clear
+              train using Xfoil data which does not take hours for the optimization. It is not clear
               what their approach has improved upon.
     </details>
