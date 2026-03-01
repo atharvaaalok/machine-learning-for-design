@@ -102,4 +102,20 @@ A curated list of resources on machine learning for fluid flow, structures and d
     <summary>Main Takeaways</summary>
 
         - Motivation:
+            - Surrogate models require specific airfoil parameterizations. Neural Networks allow
+              automatic feature extraction allowing generalization.
+            - Goal: Predict Cp distribution at pre-defined x-coords for given airfoil.
+        - Data Generation:
+            - In-house panel code for inviscid, incompressible flow at 0 AoA.
+            - UIUC database, 1562 airfoils, 1600 sample points on each.
+        - Components:
+            - CNN as main architecture. Also try 1) Pure Softmax classifier,
+              2) Autoencoder + Softmax. CNNs outperform other approaches and form the main focus.
+            - Treat the Cp prediction problem as classification by discretizing into bins.
+            - Input: Array of (x, y) coordinate pairs of the entire airfoil.
+            - Output: Cp value at each (x, y) point.
+            - Trained using Cross-entropy loss.
+        - Miscellaneous:
+            - Errors are high at LE for both upper and lower surfaces due to high pressure
+              variability.
     </details>
