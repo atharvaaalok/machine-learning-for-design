@@ -95,3 +95,11 @@ A curated list of resources on machine learning for fluid flow, structures and d
               train using Xfoil data which does not take hours for the optimization. It is not clear
               what their approach has improved upon.
     </details>
+
+
+- [A Convolutional Neural Network Approach to Training Predictors for Airfoil Performance](https://arc.aiaa.org/doi/abs/10.2514/6.2017-3660) - 2017, Emre Yilmaz et al.
+    <details>
+    <summary>Main Takeaways</summary>
+
+        - Motivation:
+    </details>
