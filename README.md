@@ -119,3 +119,36 @@ A curated list of resources on machine learning for fluid flow, structures and d
             - Errors are high at LE for both upper and lower surfaces due to high pressure
               variability.
     </details>
+
+
+- [Prediction of Aerodynamic Flow Fields using Convolutional Neural Networks](https://link.springer.com/article/10.1007/s00466-019-01740-0) - 2019, Saakaar Bhatnagar and Yaser Afshar et al.
+    <details>
+    <summary>Main Takeaways</summary>
+
+        - Motivation:
+            - RANS solvers are time consuming, build a surrogate for speed up.
+            - Goal: CNN to predict entire flow field (velocity and pressure) over 2D airfoils in
+              turbulent flow at different Re, AoA.
+        - Data Generation:
+            - OVERTURNS as solver for compressible RANS.
+            - Airfoils (S805, S809, S814). AoA (0, 20), Re (0.5, 1, 2, 3) * 1e6 for a total of 252
+              simulations (3 * 21 * 4).
+            - Structured C mesh with dimensions (384x124 = 48,856).
+            - Mach = 0.2. Flow conditions are for wind turbines.
+        - Components:
+            - Encoder-Decoder CNN architecture similar to Guo et al.
+            - Geometry: SDF on cartesian grid (150x150).
+            - Loss: MSE + GS + L2. GS = Gradient Sharpening (they use central difference).
+            - Validation: Mean Absolute Percentage Error (MAPE).
+        - Key Ideas:
+            - Their contribution: 1) Use RANS data, 2) Rigorous aerodynamic analysis, 3) Improve
+              computational aspects of previous works (Guo et al. separated decoder -> shared
+              decoder)
+            - 10,000x speed up over RANS solver while maintaining <10% error.
+            - Gradient sharpening improves error significantly and also improves the visual match.
+            - Improved speed upon using shared decoder instead of separated decoder and 50% fewer
+              parameters.
+        - Miscellaneous:
+            - Data-driven methods can augment (turbulence modeling) or replace (surrogates)
+              high-fidelity solvers.
+    </details>
