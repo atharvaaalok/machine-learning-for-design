@@ -152,3 +152,34 @@ A curated list of resources on machine learning for fluid flow, structures and d
             - Data-driven methods can augment (turbulence modeling) or replace (surrogates)
               high-fidelity solvers.
     </details>
+
+
+- [Fast Flow Field Prediction over Airfoils using Deep Learning Approach](https://doi.org/10.1063/1.5094943) - 2019, Vinothkumar Sekar et al.
+    <details>
+    <summary>Main Takeaways</summary>
+
+        - Motivation:
+            - Solvers are time consuming, build a surrogate for speed up.
+            - Previous CNN based surrogates are image-to-image and suffer from inaccuracies near the
+              boundary because Cartesian image pixels cannot approximate curved airfoil boundaries.
+            - Goal: Build a surrogate CNN + MLP that can predict flow field at arbitrary (x, y).
+        - Data Generation:
+            - CNN (geometry): 216x216 images of 1550 airfoils from UIUC database. Trained like an
+              autoencoder reconstruct airfoil y-coords (35 upper, 35 lower).
+            - MLP (flow): Open-FOAM as solver. 110 NACA airfoils, AoA (0, 14), Re (100, 2000).
+              Randomly choose 6 AoA, 8 Re for each airfoil. Total 110 * 48 = 5280 simulations.
+            - Incompressible, laminar, steady flow over airfoils.
+        - Components:
+            - 2 step process: 1) CNN, 2) MLP.
+            - CNN: Extract the geometry features. Trained like an autoencoder: image of airfoil ->
+              feature vector P1-P16 -> reconstruct airfoil y-coords (35 upper, 35 lower).
+            - MLP: Use the extracted features with flow conditions (Re, AoA) and (x, y) coordinates
+              to predict flow at arbitrary boundary points.
+        - Key Ideas:
+            - **Improved accuracy** by predicting flow at arbitrary (x, y) compared to
+              image-to-image CNNs. Often predictions near the boundary are more important.
+            - **Computationally efficient** compared to CFD solvers which due to BC at farfield
+              require large meshes. Here we can do inference only on the boundary as well.
+            - This approach can also work for optimization. Optimize over the feature vector P1-P16
+              and then use decoder to reconstruct airfoil y-coords.
+    </details>
