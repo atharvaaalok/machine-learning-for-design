@@ -183,3 +183,29 @@ A curated list of resources on machine learning for fluid flow, structures and d
             - This approach can also work for optimization. Optimize over the feature vector P1-P16
               and then use decoder to reconstruct airfoil y-coords.
     </details>
+
+
+- [Fast Pressure Distribution Prediction of Airfoils using Deep Learning](https://doi.org/10.1016/j.ast.2020.105949) - 2020, Xinyu Hui et al.
+    <details>
+    <summary>Main Takeaways</summary>
+
+        - Motivation:
+            - Solvers are time consuming, build a surrogate for speed up.
+            - Goal: CNN to predict Cp distribution in transonic flow with shock waves.
+        - Data Generation:
+            - Base RAE2822 airfoil deformed using Free-Form Deformation (FFD) and Latin Hypercube
+              Sampling (LHS) to create 1500 airfoils.
+            - CFL3D as solver.
+            - Mach = 0.734, Re = 6.5 * 1e6, AoA = 2.79.
+            - Cp is found at pre-decided x-coords using linear interpolation.
+            - Robustness of model validated by repeating everything for S809 airfoil at subsonic
+              conditions.
+        - Components:
+            - CNN that takes as input SDF images and outputs Cp at y-coords at 49 pre-decided
+              x-coords. 2 networks, one for each Cp upper and Cp lower.
+            - Input: 32x32 images with SDF for geometry.
+            - Cp is discretized into bins and they perform classification instead of regression.
+        - Key Ideas:
+            - Model is able to capture unseen phenomenon like double shocks and strong shocks.
+            - 500x speed up compared to their solver.
+    </details>
