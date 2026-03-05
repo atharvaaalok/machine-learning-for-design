@@ -209,3 +209,11 @@ A curated list of resources on machine learning for fluid flow, structures and d
             - Model is able to capture unseen phenomenon like double shocks and strong shocks.
             - 500x speed up compared to their solver.
     </details>
+
+
+- [Lat-Net - Compressing Lattice Boltzmann Flow Simulations using Deep Neural Networks](https://arxiv.org/abs/1705.09036) - 2017, Oliver Hennigh et al.
+    <details>
+    <summary>Main Takeaways</summary>
+
+        - Motivation:
+    </details>
