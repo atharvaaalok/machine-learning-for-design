@@ -256,3 +256,11 @@ A curated list of resources on machine learning for fluid flow, structures and d
               collision step is like 1x1 conv. So their CNN approach compresses a large CNN into a
               small one.
     </details>
+
+
+- [A Deep Learning Approach for the Transonic Flow Field Predictions Around Airfoils](https://doi.org/10.1016/j.compfluid.2022.105312) - 2022, Cihat Duru et al.
+    <details>
+    <summary>Main Takeaways</summary>
+
+        - Motivation:
+    </details>
