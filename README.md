@@ -211,9 +211,48 @@ A curated list of resources on machine learning for fluid flow, structures and d
     </details>
 
 
-- [Lat-Net - Compressing Lattice Boltzmann Flow Simulations using Deep Neural Networks](https://arxiv.org/abs/1705.09036) - 2017, Oliver Hennigh et al.
+- [Lat-Net - Compressing Lattice Boltzmann Flow Simulations using Deep Neural Networks](https://arxiv.org/abs/1705.09036) - 2017, Oliver Hennigh
     <details>
     <summary>Main Takeaways</summary>
 
         - Motivation:
+            - Fluid simulations are computationally and memory demanding.
+            - Surrogate for time-dependent turbulence because that is hard and needs high spatial
+              and temporal resolution.
+            - Same approach works for other PDEs solved by LBM, they do electromagnetism too.
+            - Goal: CNN based autoencoder approximation to reduce compute time and memory of LBM.
+            - Contributions: 1) Reduce memory requirements especially in 3D where it grows cubically
+              with grid size, 2) Train on small simulation, generalize on large, 3) Method
+              applicable to many physical simulations.
+        - Data Generation:
+            - MechSys library for simulations.
+            - 2D - Train: 50 simulations 256x256, D2Q9 with 8 objects of random size and position.
+              Test: 256x256, 1024x1024 with similar objects, 256x512 with vehicle cross-sections.
+            - 3D - Train: 50 simulations 40x40x160, D3Q9 with 4 sphere of fixed size but random
+              position. Test: 40x40x160, 160x160x160.
+            - Electromagnetism data - Train: 256x256, Test: 512x512.
+        - Components:
+            - Lat-Net has 3 components: 1) Encoder - encode state and BC, 2) Map encoded state to
+              next state in time, 3) Decode actual state from codes.
+            - Inputs: 1) ft - flow state at t (nx, ny, 9) for 2D or (nx, ny, nz, 15) for 3D and
+              2) b - boundary (nx, ny, nz, 1) with 0/1 values for occupancy.
+            - Networks compress ft -> gt and b -> bmul, badd (same size as gt).
+            - In LBM, BC is used at every time-step so they also add BC to state gt -> gt * bmul +
+              badd. This allowed BC info to be rooted throughout simulation.
+            - Modified state is simulated using another network gt -> gt+1. Each network step
+              corresponds to 60/120 solver steps.
+            - Each gt is decoded using a decoder network gt -> ft.
+            - Networks are fully convolutional allowing training on small simulations and testing on
+              large ones.
+            - Loss: MSE + GDL (Gradient Difference Loss).
+        - Key Ideas:
+            - Using fully convolutional network allows predicting flow for larger simulations but
+              the predictions are unstable.
+            - The dynamic state update is fast (9x) but decoding is slow and overall no gains.
+            - Time for computing flow at a point/line/plane is much cheaper thanks to fully
+              convolutional layers.
+        - Miscellaneous:
+            - LBM can be seen through the lens of convolution. Streaming step is like 3x3 conv and
+              collision step is like 1x1 conv. So their CNN approach compresses a large CNN into a
+              small one.
     </details>
