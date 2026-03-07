@@ -302,3 +302,11 @@ A curated list of resources on machine learning for fluid flow, structures and d
             - Data points with > 100% error are excluded from MAPE calculations. 2% of data are
               outliers.
     </details>
+
+
+- [CNNFOIL - Convolutional Encoder Decoder Modeling for Pressure Fields Around Airfoils](https://doi.org/10.1007/s00521-020-05461-x) - 2020, Cihat Duru et al.
+    <details>
+    <summary>Main Takeaways</summary>
+
+        - Motivation:
+    </details>
