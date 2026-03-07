@@ -263,4 +263,42 @@ A curated list of resources on machine learning for fluid flow, structures and d
     <summary>Main Takeaways</summary>
 
         - Motivation:
+            - Goal: CNN surrogate to predict flow field in hard flow conditions.
+            - Consider steady, compressible flow at high AoA, M = 0.7 and Re = 6 * 1e6. This makes
+              the test case (shock, stall) much harder than incompressible and transonic cases that
+              have been studied before.
+            - Extension of CNNFOIL work.
+        - Data Generation:
+            - Subset of UIUC airfoils. 204 airfoils, AoA (-10, 20), M = 0.7, Re = 6 * 1e6. Total
+              simulations 204 * 31 = 6324.
+            - In-house CFD solver, RANS.
+            - Structured O-grid meshes with yplus < 1 and far-field at 500x chord.
+            - Field values are interpolated to the cartesian grid used for SDF input image.
+        - Components:
+            - Input: Geometry as SDF images 256x256 modified to be 0 within airfoil.
+            - Output: Pressure and Mach fields.
+            - CNN maps SDF image to Pressure and Mach fields.
+            - Loss: MSE. Evaluation: Absolute error, MAPE, AWT (Accuracy with threshold) =
+              max(|y/y'|, |y'/y|) < delta.
+        - Key Ideas:
+            - Shock location predicted within 2% error. 
+            - Cp and M errors are large and localized at shock location. Model captures overall flow
+              structure very well.
+            - OOD generalization test on NACA0012. Performance similar to that on training data.
+            - They argue that ML model is for low fidelity, hence unfair to compare performance with
+              high accuracy CFD. They also run less accurate CFD simulation that gives a 20x speed
+              boost over high accuracy CFD. They find that it is less accurate than model while
+              still being 100x slower. Therefore models perform better than plain less accuracy CFD.
+        - Miscellaneous:
+            - Treat airfoil rotated by AoA as a new shape.
+            - Cp errors larger than M as Cp field has larger gradients across shocks.
+            - Only pressure distribution is available through CNN prediction. No shear stress. That
+              will require much finer resolution than 256x256. So only pressure lift and drag.
+            - Good match in Cd prediction at large AoA as most Cd comes from pressure. At small AoA,
+              viscous forces have significant contribution and we see large errors.
+            - There is a loss of accuracy in the flow field at the flow interpolation step itself.
+              So model is actually trained on data with errors. Eg: slight shock shift.
+        - Potential Issues:
+            - Data points with > 100% error are excluded from MAPE calculations. 2% of data are
+              outliers.
     </details>
