@@ -309,4 +309,27 @@ A curated list of resources on machine learning for fluid flow, structures and d
     <summary>Main Takeaways</summary>
 
         - Motivation:
+            - Previous works consider atleast one of laminar, incompressible flow or few airfoils.
+              They consider turbulent, compressible flow over 200 airfoils.
+            - Goal: CNN to predict pressure field around airfoil in compressible, turbulent flow.
+        - Data Generation:
+            - M = 0.7 has shocks but not too many as in transonic M (0.8, 1). This has high pressure
+              gradients but few shocks.
+            - RANS simulations using TrRANSFER (in-house) as solver.
+            - 200 airfoils from UIUC database. M = 0.7, AoA = 0 fixed. Total simulations = 200.
+            - Structured O-grid meshes with yplus < 1 and far-field at 500x chord.
+            - Cp values are interpolated to the cartesian grid used for SDF input image.
+        - Components:
+            - Input: 256x256 SDF for geometry. SDF modified to 0 inside airfoil.
+            - Output: Cp field on the SDF grid.
+            - CNNFOIL: Encoder-decoder CNN maps SDF -> Cp field.
+            - Loss: MSE. Eval: MAPE.
+        - Key Ideas:
+            - Good capturing of overall flow structure except relatively larger errors at shock
+              locations.
+        - Miscellaneous:
+            - They present a plot of % data points vs cumulative error. This could be a useful
+              insight when doing warm starting, giving an idea of how many points are how close.
+              This could be extended to plot a 3D plot over a 2D field where over each pixel we plot
+              a bar of height cumulative % error over dataset.
     </details>
