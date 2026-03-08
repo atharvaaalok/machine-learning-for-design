@@ -333,3 +333,11 @@ A curated list of resources on machine learning for fluid flow, structures and d
               This could be extended to plot a 3D plot over a 2D field where over each pixel we plot
               a bar of height cumulative % error over dataset.
     </details>
+
+
+- [A Deep Learning Approach to an Airfoil Inverse Design Problem](https://doi.org/10.2514/6.2018-3420) - 2018, Emre Yilmaz et al.
+    <details>
+    <summary>Main Takeaways</summary>
+
+        - Motivation:
+    </details>
