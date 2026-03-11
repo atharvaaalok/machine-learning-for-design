@@ -340,4 +340,18 @@ A curated list of resources on machine learning for fluid flow, structures and d
     <summary>Main Takeaways</summary>
 
         - Motivation:
+            - Goal: CNN predicts the airfoil shape given a Cp distribution.
+            - They claim that previous works use specific geometry representations that limit the
+              design space.
+            - They turn regression into classification by discretization of outputs y-coords.
+        - Data Generation:
+            - UIUC database, processed and interpolated for consistent x-coords for all.
+            - Xfoil for Cp distribution at Re = 1e5, AoA = 0.
+            - y-coords discretized for classification.
+        - Components:
+            - Input: (x, Cp) for all airfoil points.
+            - Output: y-coords at pre-specified x-coords.
+            - CNN predicts the probability of y-coords lying in different bins.
+            - CNN architecture inspired from LeNet.
+            - Loss: Cross-entropy.
     </details>
